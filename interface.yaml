@@ -1,0 +1,4 @@
+name: openstack
+summary: Interface for connecting to the OpenStack integration charm.
+version: 1
+maintainer: Cory Johns <cory.johns@canonical.com>
