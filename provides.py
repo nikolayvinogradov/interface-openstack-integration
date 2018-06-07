@@ -81,6 +81,10 @@ class IntegrationRequest:
         """
         return not self.has_credentials
 
+    @property
+    def unit_name(self):
+        return self._unit.unit_name
+
     def set_credentials(self,
                         auth_url,
                         username,
