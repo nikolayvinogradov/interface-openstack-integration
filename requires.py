@@ -24,7 +24,7 @@ from charms.reactive import when, when_not
 from charms.reactive import clear_flag, toggle_flag
 
 
-class OpenStackRequires(Endpoint):
+class OpenStackIntegrationRequires(Endpoint):
     """
     Interface to request integration access.
 

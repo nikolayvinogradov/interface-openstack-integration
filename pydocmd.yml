@@ -3,10 +3,10 @@ site_name: 'OpenStack Integration Interface'
 generate:
   - requires.md:
     - requires
-    - requires.OpenStackRequires+
+    - requires.OpenStackIntegrationRequires+
   - provides.md:
     - provides
-    - provides.OpenStackProvides+
+    - provides.OpenStackIntegrationProvides+
     - provides.IntegrationRequest+
 
 pages:

@@ -18,7 +18,7 @@ from charms.reactive import when
 from charms.reactive import toggle_flag, clear_flag
 
 
-class OpenStackProvides(Endpoint):
+class OpenStackIntegrationProvides(Endpoint):
     """
     Example usage:
 

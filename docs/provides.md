@@ -12,10 +12,10 @@ The flags that are set by the provides side of this interface are:
   request, perform whatever actions are necessary to satisfy those requests,
   and then mark them as complete.
 
-<h1 id="provides.OpenStackProvides">OpenStackProvides</h1>
+<h1 id="provides.OpenStackIntegrationProvides">OpenStackIntegrationProvides</h1>
 
 ```python
-OpenStackProvides(self, endpoint_name, relation_ids=None)
+OpenStackIntegrationProvides(self, endpoint_name, relation_ids=None)
 ```
 
 Example usage:
@@ -32,16 +32,16 @@ def handle_requests():
     openstack.mark_completed()
 ```
 
-<h2 id="provides.OpenStackProvides.requests">requests</h2>
+<h2 id="provides.OpenStackIntegrationProvides.requests">requests</h2>
 
 
 A list of the new or updated `IntegrationRequests` that
 have been made.
 
-<h2 id="provides.OpenStackProvides.mark_completed">mark_completed</h2>
+<h2 id="provides.OpenStackIntegrationProvides.mark_completed">mark_completed</h2>
 
 ```python
-OpenStackProvides.mark_completed(self)
+OpenStackIntegrationProvides.mark_completed(self)
 ```
 
 Mark all requests as completed and remove the `requests-pending` flag.

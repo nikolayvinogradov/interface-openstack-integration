@@ -19,10 +19,10 @@ The flags that are set by the requires side of this interface are:
   running.  This flag is automatically removed if new integration features are
   requested.  It should not be removed by the charm.
 
-<h1 id="requires.OpenStackRequires">OpenStackRequires</h1>
+<h1 id="requires.OpenStackIntegrationRequires">OpenStackIntegrationRequires</h1>
 
 ```python
-OpenStackRequires(self, endpoint_name, relation_ids=None)
+OpenStackIntegrationRequires(self, endpoint_name, relation_ids=None)
 ```
 
 Interface to request integration access.
@@ -47,7 +47,7 @@ def openstack_integration_ready():
     update_config_enable_openstack(credentials)
 ```
 
-<h2 id="requires.OpenStackRequires.is_ready">is_ready</h2>
+<h2 id="requires.OpenStackIntegrationRequires.is_ready">is_ready</h2>
 
 
 Whether or not the request for this instance has been completed.
