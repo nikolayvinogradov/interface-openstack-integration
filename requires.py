@@ -86,5 +86,25 @@ class OpenStackIntegrationRequires(Endpoint):
         return bool(self.credentials)
 
     @property
-    def credentials(self):
-        return self._received['credentials']
+    def auth_url(self):
+        return self._received['auth_url']
+
+    @property
+    def username(self):
+        return self._received['username']
+
+    @property
+    def password(self):
+        return self._received['password']
+
+    @property
+    def user_domain_name(self):
+        return self._received['user_domain_name']
+
+    @property
+    def project_domain_name(self):
+        return self._received['project_domain_name']
+
+    @property
+    def project_name(self):
+        return self._received['project_name']

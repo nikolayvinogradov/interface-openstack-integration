@@ -81,11 +81,24 @@ class IntegrationRequest:
         """
         return not self.has_credentials
 
-    def set_credentials(self, credentials):
+    def set_credentials(self,
+                        auth_url,
+                        username,
+                        password,
+                        user_domain_name,
+                        project_domain_name,
+                        project_name):
         """
         Set the credentials for this request.
         """
-        self._unit.relation.to_publish['credentials'] = credentials
+        self._unit.relation.to_publish.update({
+            'auth_url': auth_url,
+            'username': username,
+            'password': password,
+            'user_domain_name': user_domain_name,
+            'project_domain_name': project_domain_name,
+            'project_name': project_name,
+        })
 
     @property
     def has_credentials(self):
