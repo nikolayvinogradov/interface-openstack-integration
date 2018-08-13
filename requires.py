@@ -44,8 +44,12 @@ class OpenStackIntegrationRequires(Endpoint):
     @when('endpoint.openstack.ready')
     def openstack_integration_ready():
         openstack = endpoint_from_flag('endpoint.openstack.joined')
-        credentials = openstack.get_credentials()
-        update_config_enable_openstack(credentials)
+        update_config_enable_openstack(openstack.auth_url,
+                                       openstack.username,
+                                       openstack.password,
+                                       openstack.user_domain_name,
+                                       openstack.project_domain_name,
+                                       openstack.project_name)
     ```
     """
 
@@ -83,7 +87,14 @@ class OpenStackIntegrationRequires(Endpoint):
         """
         Whether or not the request for this instance has been completed.
         """
-        return bool(self.credentials)
+        return all(field is not None for field in [
+            self.auth_url,
+            self.username,
+            self.password,
+            self.user_domain_name,
+            self.project_domain_name,
+            self.project_name,
+        ])
 
     @property
     def auth_url(self):
