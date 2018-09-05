@@ -45,6 +45,7 @@ class OpenStackIntegrationRequires(Endpoint):
     def openstack_integration_ready():
         openstack = endpoint_from_flag('endpoint.openstack.joined')
         update_config_enable_openstack(openstack.auth_url,
+                                       openstack.region,
                                        openstack.username,
                                        openstack.password,
                                        openstack.user_domain_name,
@@ -99,6 +100,10 @@ class OpenStackIntegrationRequires(Endpoint):
     @property
     def auth_url(self):
         return self._received['auth_url']
+
+    @property
+    def region(self):
+        return self._received['region']
 
     @property
     def username(self):

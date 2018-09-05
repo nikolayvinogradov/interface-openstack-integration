@@ -87,6 +87,7 @@ class IntegrationRequest:
 
     def set_credentials(self,
                         auth_url,
+                        region,
                         username,
                         password,
                         user_domain_name,
@@ -98,6 +99,7 @@ class IntegrationRequest:
         """
         self._unit.relation.to_publish.update({
             'auth_url': auth_url,
+            'region': region,
             'username': username,
             'password': password,
             'user_domain_name': user_domain_name,
