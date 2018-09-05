@@ -119,3 +119,7 @@ class OpenStackIntegrationRequires(Endpoint):
     @property
     def project_name(self):
         return self._received['project_name']
+
+    @property
+    def endpoint_tls_ca(self):
+        return self._received['endpoint_tls_ca']

@@ -91,7 +91,8 @@ class IntegrationRequest:
                         password,
                         user_domain_name,
                         project_domain_name,
-                        project_name):
+                        project_name,
+                        endpoint_tls_ca):
         """
         Set the credentials for this request.
         """
@@ -102,6 +103,7 @@ class IntegrationRequest:
             'user_domain_name': user_domain_name,
             'project_domain_name': project_domain_name,
             'project_name': project_name,
+            'endpoint_tls_ca': endpoint_tls_ca,
         })
 
     @property
