@@ -42,24 +42,28 @@ class OpenStackIntegrationProvides(Endpoint):
         clear_flag(self.expand_name('changed'))
 
     @property
-    def requests(self):
+    def all_requests(self):
         """
-        A list of the new or updated #IntegrationRequests that
-        have been made.
+        A list of all of the #IntegrationRequests that have been made.
         """
-        if not hasattr(self, '_requests'):
-            all_requests = [IntegrationRequest(unit)
-                            for unit in self.all_joined_units]
-            is_changed = attrgetter('is_changed')
-            self._requests = list(filter(is_changed, all_requests))
-        return self._requests
+        if not hasattr(self, '_all_requests'):
+            self._all_requests = [IntegrationRequest(unit)
+                                  for unit in self.all_joined_units]
+        return self._all_requests
+
+    @property
+    def new_requests(self):
+        """
+        A list of the new or updated #IntegrationRequests that have been made.
+        """
+        is_changed = attrgetter('is_changed')
+        return list(filter(is_changed, self.all_requests))
 
     def mark_completed(self):
         """
         Mark all requests as completed and remove the `requests-pending` flag.
         """
         clear_flag(self.expand_name('requests-pending'))
-        self._requests = []
 
 
 class IntegrationRequest:
