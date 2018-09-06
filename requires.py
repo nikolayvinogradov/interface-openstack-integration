@@ -83,6 +83,8 @@ class OpenStackIntegrationRequires(Endpoint):
     def remove_ready(self):
         clear_flag(self.expand_name('ready'))
 
+    # Although more information can be passed, such as LBaaS access
+    # the minimum needed to be considered ready is defined here
     @property
     def is_ready(self):
         """
@@ -128,3 +130,25 @@ class OpenStackIntegrationRequires(Endpoint):
     @property
     def endpoint_tls_ca(self):
         return self._received['endpoint_tls_ca']
+
+    @property
+    def subnet_id(self):
+        return self._received['subnet_id']
+
+    @property
+    def fip_id(self):
+        return self._received['fip_id']
+
+    @property
+    def lb_method(self):
+        return self._received['lb_method']
+    
+    @property
+    def manage_sec_groups(self):
+        return self._received['manage_sec_groups']
+
+    @property
+    def node_sec_groups(self):
+        return self._received['node_sec_groups']
+    
+
