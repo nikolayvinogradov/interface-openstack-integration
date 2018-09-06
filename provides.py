@@ -87,6 +87,7 @@ class IntegrationRequest:
 
     def set_credentials(self,
                         auth_url,
+                        region,
                         username,
                         password,
                         user_domain_name,
@@ -98,12 +99,27 @@ class IntegrationRequest:
         """
         self._unit.relation.to_publish.update({
             'auth_url': auth_url,
+            'region': region,
             'username': username,
             'password': password,
             'user_domain_name': user_domain_name,
             'project_domain_name': project_domain_name,
             'project_name': project_name,
             'endpoint_tls_ca': endpoint_tls_ca,
+        })
+
+    def set_lbaas_config(self,
+                         subnet_id,
+                         fip_id,
+                         lb_method,
+                         manage_sec_groups,
+                         node_sec_groups):
+        self._unit.relation.to_publish.update({
+            'subnet_id': subnet_id,
+            'fip_id': fip_id,
+            'lb_method': lb_method,
+            'manage_sec_groups': manage_sec_groups,
+            'node_sec_groups': node_sec_groups,
         })
 
     @property
