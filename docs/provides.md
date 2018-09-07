@@ -32,11 +32,15 @@ def handle_requests():
     openstack.mark_completed()
 ```
 
-<h2 id="provides.OpenStackIntegrationProvides.requests">requests</h2>
+<h2 id="provides.OpenStackIntegrationProvides.all_requests">all_requests</h2>
 
 
-A list of the new or updated `IntegrationRequests` that
-have been made.
+A list of all of the `IntegrationRequests` that have been made.
+
+<h2 id="provides.OpenStackIntegrationProvides.new_requests">new_requests</h2>
+
+
+A list of the new or updated `IntegrationRequests` that have been made.
 
 <h2 id="provides.OpenStackIntegrationProvides.mark_completed">mark_completed</h2>
 
@@ -68,7 +72,7 @@ marked completed (if ever).
 <h2 id="provides.IntegrationRequest.set_credentials">set_credentials</h2>
 
 ```python
-IntegrationRequest.set_credentials(self, credentials)
+IntegrationRequest.set_credentials(self, auth_url, region, username, password, user_domain_name, project_domain_name, project_name, endpoint_tls_ca)
 ```
 
 Set the credentials for this request.

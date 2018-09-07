@@ -43,8 +43,13 @@ from charms.reactive import when, endpoint_from_flag
 @when('endpoint.openstack.ready')
 def openstack_integration_ready():
     openstack = endpoint_from_flag('endpoint.openstack.joined')
-    credentials = openstack.get_credentials()
-    update_config_enable_openstack(credentials)
+    update_config_enable_openstack(openstack.auth_url,
+                                   openstack.region,
+                                   openstack.username,
+                                   openstack.password,
+                                   openstack.user_domain_name,
+                                   openstack.project_domain_name,
+                                   openstack.project_name)
 ```
 
 <h2 id="requires.OpenStackIntegrationRequires.is_ready">is_ready</h2>
