@@ -42,18 +42,81 @@ from charms.reactive import when, endpoint_from_flag
 
 @when('endpoint.openstack.ready')
 def openstack_integration_ready():
-    openstack = endpoint_from_flag('endpoint.openstack.joined')
-    update_config_enable_openstack(openstack.auth_url,
-                                   openstack.region,
-                                   openstack.username,
-                                   openstack.password,
-                                   openstack.user_domain_name,
-                                   openstack.project_domain_name,
-                                   openstack.project_name)
+    openstack = endpoint_from_flag('endpoint.openstack.ready')
+    update_config_enable_openstack(openstack)
 ```
+
+<h2 id="requires.OpenStackIntegrationRequires.auth_url">auth_url</h2>
+
+
+The authentication endpoint URL.
+
+<h2 id="requires.OpenStackIntegrationRequires.endpoint_tls_ca">endpoint_tls_ca</h2>
+
+
+Optional base64-encoded CA certificate for the authentication endpoint,
+or None.
+
+<h2 id="requires.OpenStackIntegrationRequires.floating_network_id">floating_network_id</h2>
+
+
+Optional floating network ID, or None.
 
 <h2 id="requires.OpenStackIntegrationRequires.is_ready">is_ready</h2>
 
 
 Whether or not the request for this instance has been completed.
+
+<h2 id="requires.OpenStackIntegrationRequires.lb_method">lb_method</h2>
+
+
+Optional load-balancer method, or None.
+
+<h2 id="requires.OpenStackIntegrationRequires.manage_security_groups">manage_security_groups</h2>
+
+
+Whether or not the Load Balancer should automatically manage security
+group rules.
+
+Will be `True` or `False`.
+
+<h2 id="requires.OpenStackIntegrationRequires.node_security_group">node_security_group</h2>
+
+
+ID of the security group to manage if `manage_security_groups` is set.
+
+<h2 id="requires.OpenStackIntegrationRequires.password">password</h2>
+
+
+The password.
+
+<h2 id="requires.OpenStackIntegrationRequires.project_domain_name">project_domain_name</h2>
+
+
+The project domain name.
+
+<h2 id="requires.OpenStackIntegrationRequires.project_name">project_name</h2>
+
+
+The project name, also known as the tenant ID.
+
+<h2 id="requires.OpenStackIntegrationRequires.region">region</h2>
+
+
+The region name.
+
+<h2 id="requires.OpenStackIntegrationRequires.subnet_id">subnet_id</h2>
+
+
+Optional subnet ID to work in, or None.
+
+<h2 id="requires.OpenStackIntegrationRequires.user_domain_name">user_domain_name</h2>
+
+
+The user domain name.
+
+<h2 id="requires.OpenStackIntegrationRequires.username">username</h2>
+
+
+The username.
 

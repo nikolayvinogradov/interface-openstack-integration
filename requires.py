@@ -43,14 +43,8 @@ class OpenStackIntegrationRequires(Endpoint):
 
     @when('endpoint.openstack.ready')
     def openstack_integration_ready():
-        openstack = endpoint_from_flag('endpoint.openstack.joined')
-        update_config_enable_openstack(openstack.auth_url,
-                                       openstack.region,
-                                       openstack.username,
-                                       openstack.password,
-                                       openstack.user_domain_name,
-                                       openstack.project_domain_name,
-                                       openstack.project_name)
+        openstack = endpoint_from_flag('endpoint.openstack.ready')
+        update_config_enable_openstack(openstack)
     ```
     """
 
@@ -83,14 +77,15 @@ class OpenStackIntegrationRequires(Endpoint):
     def remove_ready(self):
         clear_flag(self.expand_name('ready'))
 
-    # Although more information can be passed, such as LBaaS access
-    # the minimum needed to be considered ready is defined here
     @property
     def is_ready(self):
         """
         Whether or not the request for this instance has been completed.
         """
-        return all(field is not None for field in [
+        # Although more information can be passed, such as LBaaS access
+        # the minimum needed to be considered ready is defined here
+        sec_grp = self.node_security_group or not self.manage_security_groups
+        return sec_grp and all(field is not None for field in [
             self.auth_url,
             self.username,
             self.password,
@@ -101,54 +96,95 @@ class OpenStackIntegrationRequires(Endpoint):
 
     @property
     def auth_url(self):
+        """
+        The authentication endpoint URL.
+        """
         return self._received['auth_url']
 
     @property
     def region(self):
+        """
+        The region name.
+        """
         return self._received['region']
 
     @property
     def username(self):
+        """
+        The username.
+        """
         return self._received['username']
 
     @property
     def password(self):
+        """
+        The password.
+        """
         return self._received['password']
 
     @property
     def user_domain_name(self):
+        """
+        The user domain name.
+        """
         return self._received['user_domain_name']
 
     @property
     def project_domain_name(self):
+        """
+        The project domain name.
+        """
         return self._received['project_domain_name']
 
     @property
     def project_name(self):
+        """
+        The project name, also known as the tenant ID.
+        """
         return self._received['project_name']
 
     @property
     def endpoint_tls_ca(self):
-        return self._received['endpoint_tls_ca']
+        """
+        Optional base64-encoded CA certificate for the authentication endpoint,
+        or None.
+        """
+        return self._received['endpoint_tls_ca'] or None
 
     @property
     def subnet_id(self):
+        """
+        Optional subnet ID to work in, or None.
+        """
         return self._received['subnet_id']
 
     @property
-    def fip_id(self):
-        return self._received['fip_id']
+    def floating_network_id(self):
+        """
+        Optional floating network ID, or None.
+        """
+        return self._received['floating_network_id']
 
     @property
     def lb_method(self):
+        """
+        Optional load-balancer method, or None.
+        """
         return self._received['lb_method']
-    
-    @property
-    def manage_sec_groups(self):
-        return self._received['manage_sec_groups']
 
     @property
-    def node_sec_groups(self):
-        return self._received['node_sec_groups']
-    
+    def manage_security_groups(self):
+        """
+        Whether or not the Load Balancer should automatically manage security
+        group rules.
 
+        Will be `True` or `False`.
+        """
+        return self._received['manage_security_groups'] or False
+
+    @property
+    def node_security_group(self):
+        """
+        ID of the security group to manage if `manage_security_groups` is set.
+        """
+        return self._received['node_security_group']

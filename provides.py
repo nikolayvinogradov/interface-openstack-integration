@@ -114,16 +114,16 @@ class IntegrationRequest:
 
     def set_lbaas_config(self,
                          subnet_id,
-                         fip_id,
+                         floating_network_id,
                          lb_method,
-                         manage_sec_groups,
-                         node_sec_groups):
+                         manage_security_groups,
+                         node_security_group):
         self._unit.relation.to_publish.update({
             'subnet_id': subnet_id,
-            'fip_id': fip_id,
+            'floating_network_id': floating_network_id,
             'lb_method': lb_method,
-            'manage_sec_groups': manage_sec_groups,
-            'node_sec_groups': node_sec_groups,
+            'manage_security_groups': manage_security_groups,
+            'node_security_group': node_security_group,
         })
 
     @property
