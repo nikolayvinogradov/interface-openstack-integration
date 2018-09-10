@@ -80,11 +80,6 @@ group rules.
 
 Will be `True` or `False`.
 
-<h2 id="requires.OpenStackIntegrationRequires.node_security_group">node_security_group</h2>
-
-
-ID of the security group to manage if `manage_security_groups` is set.
-
 <h2 id="requires.OpenStackIntegrationRequires.password">password</h2>
 
 
