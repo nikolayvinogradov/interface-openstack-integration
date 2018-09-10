@@ -84,8 +84,7 @@ class OpenStackIntegrationRequires(Endpoint):
         """
         # Although more information can be passed, such as LBaaS access
         # the minimum needed to be considered ready is defined here
-        sec_grp = self.node_security_group or not self.manage_security_groups
-        return sec_grp and all(field is not None for field in [
+        return all(field is not None for field in [
             self.auth_url,
             self.username,
             self.password,
@@ -181,10 +180,3 @@ class OpenStackIntegrationRequires(Endpoint):
         Will be `True` or `False`.
         """
         return self._received['manage_security_groups'] or False
-
-    @property
-    def node_security_group(self):
-        """
-        ID of the security group to manage if `manage_security_groups` is set.
-        """
-        return self._received['node_security_group']

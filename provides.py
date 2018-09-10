@@ -38,7 +38,7 @@ class OpenStackIntegrationProvides(Endpoint):
     @when('endpoint.{endpoint_name}.changed')
     def check_requests(self):
         toggle_flag(self.expand_name('requests-pending'),
-                    len(self.requests) > 0)
+                    len(self.all_requests) > 0)
         clear_flag(self.expand_name('changed'))
 
     @property
@@ -116,14 +116,12 @@ class IntegrationRequest:
                          subnet_id,
                          floating_network_id,
                          lb_method,
-                         manage_security_groups,
-                         node_security_group):
+                         manage_security_groups):
         self._unit.relation.to_publish.update({
             'subnet_id': subnet_id,
             'floating_network_id': floating_network_id,
             'lb_method': lb_method,
             'manage_security_groups': manage_security_groups,
-            'node_security_group': node_security_group,
         })
 
     @property
