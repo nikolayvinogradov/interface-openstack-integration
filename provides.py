@@ -119,7 +119,8 @@ class IntegrationRequest:
                          floating_network_id,
                          lb_method,
                          manage_security_groups,
-                         has_octavia=None):
+                         has_octavia=None,
+                         internal_lb=False):
         """
         Set the load-balancer-as-a-service config for this request.
         """
@@ -127,6 +128,7 @@ class IntegrationRequest:
             'subnet_id': subnet_id,
             'floating_network_id': floating_network_id,
             'lb_method': lb_method,
+            'internal_lb': internal_lb,
             'manage_security_groups': manage_security_groups,
             'has_octavia': has_octavia,
         })

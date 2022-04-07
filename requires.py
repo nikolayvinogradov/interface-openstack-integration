@@ -118,6 +118,7 @@ class OpenStackIntegrationRequires(Endpoint):
             self.subnet_id,
             self.floating_network_id,
             self.lb_method,
+            self.internal_lb,
             self.manage_security_groups,
         ])
 
@@ -205,6 +206,14 @@ class OpenStackIntegrationRequires(Endpoint):
         Optional load-balancer method, or None.
         """
         return self._received['lb_method']
+
+    @property
+    def internal_lb(self) -> bool:
+        """
+        If should force internal loadbalancer use.
+        Defaults to false.
+        """
+        return bool(self._received.get('internal_lb', False))
 
     @property
     def manage_security_groups(self):
