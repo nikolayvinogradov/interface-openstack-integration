@@ -208,6 +208,13 @@ class OpenStackIntegrationRequires(Endpoint):
         return self._received['lb_method']
 
     @property
+    def lb_enabled(self):
+        """
+        Optional load-balancer method, or None.
+        """
+        return self._received['lb_enabled']
+
+    @property
     def internal_lb(self) -> bool:
         """
         If should force internal loadbalancer use.
